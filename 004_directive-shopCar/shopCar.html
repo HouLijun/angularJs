@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" ng-app="directive">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车(自定义指令)</title>
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="shopCar.css">
+    <script src="../public/js/jquery.js"></script>
+    <script src="../public/js/angular.js"></script>
+    <script src="directive.js"></script>
+</head>
+<body ng-controller="mainCtrl"  ng-click="showDrop=false">
+    <!-- 自定义指令--头部 -->
+    <div template-header></div>
+    <div class="container">
+        <div class="row">
+            <div  ng-repeat="v in goods track by $index" class="col-sm-6 col-md-4">
+                <!-- 自定义指令--商品展示 -->
+                <card data="v" fn="add(v)"></card>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="list">
+<head>
+    <meta charset="UTF-8">
+    <title>angular实现增删过滤</title>
+    <script src="../public/js/angular.js"></script>
+</head>
+<style>
+    *{
+        font-size: 30px;
+    }
+    .delete{
+        margin:0 10px;
+        padding:5px;
+        color:red;
+        cursor: pointer;
+    }
+</style>
+<body ng-controller="mainCtrl"><!--这个区域所有的变量都归某函数管理-->
+<input type="text" ng-model="key">
+<ul id="ul">
+    <li ng-repeat="(i,v) in list|filter:key">
+        {{v}}
+        <span ng-click="remove(i)" class="delete">x</span>
+    </li>
+</ul>
+<button id="add" ng-click="add()">+</button>
+</body>
+<script>
+    var app = angular.module('list',[]);
+    console.log(app);
+    app.controller('mainCtrl',['$scope', function ($scope) {
+        $scope.list=['apple','blue','color'];
+        $scope.add= function () {
+            var rand=Math.floor(Math.random()*8999+1000+1);
+            $scope.list.push(rand);
+        }
+        $scope.remove= function (index) {
+            $scope.list.splice(index,1);
+        }
+    }])
+</script>
+</html>

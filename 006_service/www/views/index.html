@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="phone">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/angular.js"></script>
+    <script src="/js/index.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+<div class="container">
+    <div class="list">
+        <ul class="list-group" ng-repeat="v in list" style="margin-bottom: 0">
+            <li class="list-group-item disabled" style="border-radius: 0;cursor:default;">{{v.index}}</li>
+            <li class="list-group-item" style="border-radius: 0" ng-repeat="d in v.peoples">{{d.name}}</li>
+        </ul>
+    </div>
+    <ul class="indicators" style="list-style: none;position: fixed;top:0;bottom:0;right:100px;margin:auto;z-index:999;background-color: #fff;border-radius: 10px;">
+        <li ng-repeat="v in letter" class="letter text-center" style="padding:10px;font-size: 15px; ">
+            <a href="#">{{v}}</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

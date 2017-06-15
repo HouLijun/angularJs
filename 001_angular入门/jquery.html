@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery实现增删过滤</title>
+    <script src="../public/js/jquery.js"></script>
+</head>
+<style>
+    *{
+        font-size: 30px;
+    }
+    .delete{
+        margin:0 10px;
+        padding:5px;
+        color:red;
+        cursor: pointer;
+    }
+</style>
+<script>
+    $(function(){
+        var list=['a','b','c']
+        function rander(data){
+            $("#ul").empty();
+            $.each(data, function (i,v) {
+                $(`<li>${v}<span class="delete">x</span></li>`).appendTo("#ul");
+            })
+        }
+        rander(list);
+        $("#add").on('click',function(){
+            var r=String.fromCharCode(Math.floor(Math.random()*26+65));
+            list.push(r);
+            rander(list);
+        })
+        $("#ul").on('click','.delete', function () {
+            var li=$(this).closest("li");
+            list.splice(li.index(),1);
+            li.remove();
+        })
+        $("#input").on('keyup', function () {
+            var newArr=[];
+            var key=$(this).val();
+            $.each(list,function(i,v){
+                if(key <= v){
+                    newArr.push(v);
+                }
+            })
+            rander(newArr);
+        })
+    })
+</script>
+<body>
+<input type="text" id="input">
+<ul id="ul"></ul>
+<button id="add">+</button>
+</body>
+</html>

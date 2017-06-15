@@ -1,0 +1,27 @@
+.dropdown-menu{
+    display: block;
+    max-height:600px;
+    /*transform: translate3d(0,-800px,0);*/
+    visibility: hidden;
+    opacity:0;
+    transition: opacity .8s ease;
+    overflow: hidden;
+    z-index:9;
+}
+.dropdown-menu.toggle{
+    visibility: visible;
+    opacity: 1;
+    transform: translate3d(0,0,0);
+    z-index:9;
+}
+.project{
+    width:80%;
+}
+.add{
+    float: right;
+}
+.btn-minus,.btn-add{
+    padding:0 5px;
+    cursor:pointer;
+    background:#ccc;
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app="todo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>angular实现基于本地存储的待办事项</title>
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <script src="../public/js/angular.js"></script>
+    <script src="todo.js"></script>
+</head>
+<body ng-controller="todoCtrl">
+<div class="container">
+    <form style="margin-top:20px;text-align:center;">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="key">
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="add()">添加事项</button>
+    </form>
+    <hr>
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button ng-click="state=0" type="button" class="btn btn-{{state==0?'info':'default'}}">
+                全部
+                <span>[{{list.length}}]</span>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button ng-click="state=1" type="button" class="btn btn-{{state==1?'info':'default'}}">
+                已完成
+                <span>[{{(list|filter:done).length}}]</span>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button ng-click="state=2" type="button" class="btn btn-{{state==2?'info':'default'}}">
+                未完成
+                <span>[{{(list|filter:todo).length}}]</span>
+            </button>
+        </div>
+    </div>
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item btn-group btn-group-sm" ng-repeat="(i,v) in list|filter:dataFilter track by $index">
+            {{v.content}}
+            <span class="badge" style="background-color:red;" ng-click="remove(i)"><i class="glyphicon glyphicon-remove"></i></span>
+            <span class="badge" ng-click="v.isDone=!v.isDone;save();"><i class="glyphicon glyphicon-{{v.isDone?'ok':'edit'}}"></i></span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

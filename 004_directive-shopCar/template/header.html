@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" ng-init="showDrop=false" ng-click="prevent($event)">
+                    <a ng-click="showDrop=!showDrop" href="#" class="dropdown-toggle">购物车<span class="caret"></span></a>
+                    <div class="dropdown-menu" style="padding:0 10px;width:500px;" ng-class="{toggle:showDrop}">
+                        <table class="table">
+                            <caption class="text-center" ng-if="shopCar.length">购物车商品总数：{{number()}}</caption>
+                            <caption class="text-center" ng-if="!shopCar.length" style="padding:40px 0 20px;">购物车为空</caption>
+                            <thead ng-if="shopCar.length">
+                            <tr>
+                                <th>id</th>
+                                <th>商品</th>
+                                <th>单价</th>
+                                <th>数量</th>
+                                <th>金额</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="v in shopCar track by $index " ng-if="v.num>0">
+                                <th scope="row">{{v.id}}</th>
+                                <td>{{v.name}}</td>
+                                <td>{{v.price}}</td>
+                                <td>
+                                    <span ng-click="v.num=(v.num-1<0)?0:v.num-1;remove(v.num,$index)" class="btn-minus">-</span>
+                                    <input class="number text-center" type="text" value="{{v.num}}" style="width:30px;">
+                                    <span ng-click="v.num=v.num+1" class="btn-add">+</span>
+                                </td>
+                                <td>{{v.price * v.num}}</td>
+                                <td>
+                                    <span ng-click="shopCar.splice($index,1)" class="glyphicon glyphicon-remove btn-danger"></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h4 ng-if="shopCar.length" class="text-right">￥{{expense()}}</h4>
+                    </div>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

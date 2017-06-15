@@ -1,0 +1,27 @@
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li ng-repeat="v in data track by $index"  ng-click="indicator($index)" ng-class="{active:($index==index)}"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div ng-repeat="v in data track by $index" class="item {{($index==index)?'active':''}}">
+            <img ng-src="{{v.img}}" alt="">
+            <div class="carousel-caption">{{v.title}}</div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div ng-if="control" class="pageturn">
+        <a ng-click="prev()" class="left carousel-control">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a ng-click="next()" class="right carousel-control">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+</div>
