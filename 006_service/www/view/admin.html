@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en" ng-app="contact">
+<html lang="en" ng-app="contactAdmin">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/bootstrap.css">
+    <title>联系人管理系统</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/jquery.js"></script>
     <script src="/js/angular.js"></script>
-    <script src="/js/contact.js"></script>
+    <script src="/js/admin.js"></script>
 </head>
 <body ng-controller="mainCtrl">
 <div class="container">
@@ -45,8 +45,8 @@
         <tbody>
         <tr ng-repeat="v in list" data-id="{{v.id}}">
             <th scope="row">{{v.id}}</th>
-            <td><input ng-change="updateName(v.id,v.name)" class="form-control" type="text" ng-model="v.name"></td>
-            <td><input ng-change="updatePhone(v.id,v.phone)" class="form-control" type="text" ng-model="v.phone"></td>
+            <td><input ng-blur="updateName(v.id,v.name)" class="form-control" type="text" ng-model="v.name"></td>
+            <td><input ng-blur="updatePhone(v.id,v.phone)" class="form-control" type="text" ng-model="v.phone"></td>
             <td><input type="checkbox" value="" ng-model="v.checked"></td>
         </tr>
         </tbody>
