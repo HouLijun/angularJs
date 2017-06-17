@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="list">
+<head>
+    <meta charset="UTF-8">
+    <title>便签</title>
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="note.css">
+    <script src="../public/js/jquery.js"></script>
+    <script src="../public/js/angular.js"></script>
+    <script src="note.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+<div class="jumbotron">
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading" ng-click="">
+                <h3 class="text-center">便签</h3>
+                <span ng-click="add();" class="glyphicon glyphicon-plus" id="add"></span>
+            </div>
+            <div class="panel-body" style="height:500px;position: relative;overflow: hidden;">
+                <memo ng-repeat="(i,v) in list track by $index" data="v" position="v.position" remove="del(i)" z="zIndex"></memo>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
