@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>angular实现数据联动</title>
+    <script src="../public/js/angular.js"></script>
+    <script src="index.js"></script>
+    <style>
+        i{
+            font-style:normal;
+        }
+        .remove{
+            color:red;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+        .option{
+            display: inline-block;
+            padding:5px;
+            border:1px solid #eee;
+            margin:0 5px;
+        }
+    </style>
+</head>
+<body ng-controller="mainCtrl">
+<div class="container">
+    <div class="wait">
+        <form action="">
+            <span class="classify">待选区：</span>
+            <label ng-repeat="(i,v) in list track by $index" for="wait-{{v.id}}">{{v.content}}
+                <input type="checkbox" id="wait-{{v.id}}" name="wait" ng-click="myChange(i)" ng-model="option" ng-checked="v.checked"
+                >
+            </label>
+        </form>
+    </div>
+    <div class="already">
+        <span class="classify">已选区：</span>
+        <div class="option" ng-repeat="(i,v) in list track by $index" ng-if="v.checked">
+            <span class="content">{{v.content}}</span>
+            <i class="remove" ng-click="myChange(i)">X</i>
+        </div>
+    </div>
+</div>
+</body>
+</html>
